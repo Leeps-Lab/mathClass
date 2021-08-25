@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Exit Survey
+{% endblock %}
+
+{% block content %}
+    <div class="card bg-light m-3">
+        <div class="card-body">
+
+        <h3>
+            Exit Survey
+        </h3>
+        <p>
+            Fill in the blanks and collect the data 
+        </p>
+        <p>
+            Dummy text
+        </p>
+        <p>{% next_button %}</p>
+    </div>
+    </div>
+    {% include Constants.bg_template %}
+{% endblock %}

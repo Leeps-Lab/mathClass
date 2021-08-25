@@ -1,0 +1,86 @@
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Student Averages
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light m-3">
+        <div class="card-body">
+            <div> 
+                <h3>
+                    Student Averages
+                </h3>
+                <p>
+                    The results are in! We’re just in the process of collecting the 25 scores for your classroom from the entire roster of around 12000
+                    students. The average score across all test-takers, along with some other statistics- is given below:
+                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Mean</th>
+                            <th scope="col">SD</th>
+                            <th scope="col">Min</th>
+                            <th scope="col">Max</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Scaled Math Score</th>
+                            <td>55.77642</td>
+                            <td>12.48759</td>
+                            <td>0</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Number of students</th>
+                            <td>12233</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    In the meanwhile, let us play a guessing game. Please guess the average scores for each of the following groups in those 12233 students
+                    (not just for your classroom). You are paid according to how close your guesses are to the actual average for each group: 
+                </p>
+            </div>
+            <div class="">
+                {% for name in fields %}
+                    <div class="form-group">
+                        <form>
+                            <label for="inputPassword2" class="sr-only">{{ name }}</label>
+                            <input type="text" class="form-control" id="{{ name }}" placeholder="{{ name }}" required>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="hidden" id="scores" name="scores">
+            {{ form.scores.errors }}
+
+            <script>
+                // This script runs when next button is pressed
+                window.addEventListener('submit', function() {
+                    const fieldlist = "{{ fieldlist|safe }}".split(",");
+                    var scores = {};
+                    for (var i = 0; i < fieldlist.length; i++) {
+                        var name = fieldlist[i];
+                        answer = document.getElementById(name).value;
+                        scores[name] = answer;
+                    }
+                    document.getElementById('scores').value = JSON.stringify(scores);
+                })
+            </script>
+            <p>{% next_button %}</p>
+        </div>
+    </div>
+
+    <!-- {% include Constants.bg_template %} -->
+
+{% endblock %}
+
+

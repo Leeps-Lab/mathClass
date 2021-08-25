@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load otree static %}
+
+
+{% block title %}
+    Classrooms
+{% endblock %}
+
+{% block content %}
+<div class="card bg-light m-2 p-1">
+    <div class="card-body">
+    <p>
+        For this experiment, we randomly sampled 25 students from the ECLS, and generated classroom profiles for them based on information about them from the data. The profiles reflect the type of information a class teacher would typically have about their students. These classroom profiles are computer-generated representations of the students based on their information from the data.
+    </p>
+    <br>
+    <p>
+        You have been recruited to act as a second-grade teacher in this experiment. You will be assigned to a "classroom," which is the random sample described above. These 25 students have recently completed first grade. You will see your "classroom" on the next screen, which shows you a computer-generated representation of your students.
+    </p>
+    <p>{% next_button %}</p>
+    </div>  
+</div>
+
+{% endblock %}

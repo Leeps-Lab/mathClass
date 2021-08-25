@@ -1,0 +1,126 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    True Averages
+{% endblock %}
+
+{% block content %}
+    <style>
+        .otree-body {
+            max-width: 80vw;
+            max-height: 100vh;
+        }
+        .wrong-answer {
+            display: block;
+            opacity: 1;
+            position: absolute;
+            width: 300px;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -245px;
+            font-size: 300px;
+            font-weight: 700;
+            color: red;
+            opacity: 0;
+        }
+        .temp-box {
+            background-color: lightgrey;
+            width: 30%;
+            border: 10px solid green;
+            padding: 1%;
+            margin: 1%;
+            text-align: left;
+        }
+        
+        .container {
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+        .box-one {
+            /* background-color: gray; */
+            min-width: 100%
+
+        }
+        .box-text {
+            list-style: none;
+            padding-left: 0;
+            float: left;
+        }
+        li {
+            padding-left: 0;
+        }
+        .first-row {
+            flex-wrap: wrap;
+        }
+    </style>
+
+    <div class="card bg-light m-3">
+        <div class="card-body">
+
+            <p>
+                Here's how each of your students performed on the test. 
+            </p>
+            <div class="d-flex flex-column">
+                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row --->
+                    {% for x in templist  %}
+                        <div class="temp-box d-flex flex-column w-25">
+                            <div class="p-2">
+                                <p class="text-center">{{ x.id }}</p>
+                            </div>
+                            <div class="p-2">
+                                <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail"/>
+                            </div>
+                            <div class="box-text">
+                                <ul>
+                                    <!-- <li>{{ x.id }}</li> -->
+                                    <li>{{ x.parent1 }}</li>
+                                    <li>{{ x.parent2 }}</li>
+                                    <li>{{ x.quality1 }}</li>
+                                    <li>{{ x.quality2 }}</li>
+                                    <li>{{ x.pet }}</li>
+                                    <li>Math score: {{ x.score }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+            <p>Are there any groups for whom you want to change your average guesses?</p>
+            <div class="">
+                <form>
+                    {% for name in fields %}
+                        <div class="form-group">
+                                <label for="inputPassword2" class="sr-only">{{ name }}</label>
+                                <input type="text" class="form-control" id="{{ name }}" placeholder="{{ name }}" required>
+                        </div>
+                    {% endfor %}
+                    {% next_button %}
+                </form>
+            </div>
+            <input type="hidden" id="new_scores" name="new_scores">
+            {{ form.new_scores.errors }}
+
+            <script>
+                // This script runs when next button is pressed
+                window.addEventListener('submit', function() {
+                    const fieldlist = "{{ fieldlist|safe }}".split(",");
+                    var new_scores = {};
+                    for (var i = 0; i < fieldlist.length; i++) {
+                        var name = fieldlist[i];
+                        answer = document.getElementById(name).value;
+                        new_scores[name] = answer;
+                    }
+                    document.getElementById('new_scores').value = JSON.stringify(new_scores);
+                })
+            </script>
+        
+        </div>
+        
+    </div>
+    
+    <!-- {% include Constants.bg_template %} -->
+
+{% endblock %}
+
+

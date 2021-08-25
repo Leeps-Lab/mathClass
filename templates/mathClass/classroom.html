@@ -1,0 +1,144 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load otree static %}
+
+
+{% block content %}
+    <style>
+        .otree-body {
+            max-width: 80vw;
+            max-height: 100vh;
+        }
+        .wrong-answer {
+            display: block;
+            opacity: 1;
+            position: absolute;
+            width: 300px;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -245px;
+            font-size: 300px;
+            font-weight: 700;
+            color: red;
+            opacity: 0;
+        }
+        .temp-box {
+            background-color: lightgrey;
+            width: 30%;
+            border: 10px solid green;
+            padding: 1%;
+            margin: 1%;
+            text-align: left;
+        }
+        
+        .container {
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+        .box-one {
+            /* background-color: gray; */
+            min-width: 100%
+
+        }
+        .box-text {
+            list-style: none;
+            padding-left: 0;
+            float: left;
+        }
+        li {
+            padding-left: 0;
+        }
+        .first-row {
+            flex-wrap: wrap;
+        }
+    </style>
+    <div class="container-fluid box-one card bg-light m-2 p-1">
+       
+        <div class="container m-2 p-1">
+                <!-- card bg-light m-3 w-1000 -->
+            <h3>
+                Your Students 
+            </h3>
+            <p>
+                These students are moving from first grade to second grade, and you are required to recommend them for an accelerated elementary school mathematics track. These students have taken a standardized screening test for the accelerated track. The screening test was conducted nationally for a representative
+	sample of first-grade students. The levels of the test were consistent with first grade math, with questions designed to measure conceptual knowledge, 
+	number sense, and simple operations. Unfortunately, the results of the test are not in yet, and the deadline for submitting the recommendation is 
+	today. You are required to submit this recommendation without seeing how they performed on the screening test.
+	
+	Can you rank these students by who you believe is most likely to perform well in an accelerated math track in elementary school? Your payment
+	depends on how close your ranking is to the actual ranking on these students on the screening test.
+            </p>
+            <div class="d-flex flex-column">
+                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
+                    {% set female_asian, female_black, female_hispanic, female_other, female_white = 0,0,0,0,0 %}
+                    {% set male_asian, male_black, male_hispanic, male_other, male_white = 0,0,0,0,0 %}
+                    
+                    {% for x in templist  %}
+                        <div class="temp-box d-flex flex-column w-25">
+                            <div class="p-2">
+                                <p class="text-center">{{ x.id }}</p>
+                            </div>
+                            <div class="p-2">
+                                {% if x.gender == 'female' and x.race == 'asian' %}
+
+                                    <img src="{% static 'female/asian/{{female_asian}}.PNG' %}" class="img-thumbnail"/>
+                                    {{ female_asian + 1 }} 
+                                {% endif %}
+
+                                {% if x.gender == 'female' and x.race == 'white' %}
+
+                                    <img src="{% static 'female/white/{{female_white}}.PNG' %}" class="img-thumbnail"/>
+                                    {{ female_white + 1 }} 
+                                {% endif %}
+                                
+                            </div>
+                            <div class="box-text">
+                                <ul>
+                                    <!-- <li>{{ x.id }}</li> -->
+                                    <li>{{ x.parent1 }}</li>
+                                    <li>{{ x.parent2 }}</li>
+                                    <li>{{ x.quality1 }}</li>
+                                    <li>{{ x.quality2 }}</li>
+                                    <li>{{ x.pet }}</li>
+                                </ul>                                
+                                <form class="form-inline">                                    
+                                    <div class="form-group mx-sm-5 mb-2">
+                                      <label for="inputPassword2" class="sr-only">Rank</label>
+                                      <input class="form-control" id="{{ x.id }}" placeholder="Rank">
+                                    </div>                                    
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                    
+            </div>
+
+            
+            <p>{% next_button %}</p>
+
+            <input type="hidden" id="ranks" name="ranks">
+            {{ form.ranks.errors }}
+
+            <script>
+                // This script runs when next button is pressed
+                window.addEventListener('submit', function() {
+                    
+                    const idlist = "{{ idlist|safe }}".split(",");
+                    var ranks = {};
+                    for (var i = 0; i < idlist.length; i++) {
+                        var id = idlist[i];
+                        answer = document.getElementById(id).value;
+                        ranks[id] = answer;
+
+                    }
+                    document.getElementById('ranks').value = JSON.stringify(ranks);
+                })
+            </script>
+        </div>
+    </div>
+    
+    
+{% endblock %}
+
