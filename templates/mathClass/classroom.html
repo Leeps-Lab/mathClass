@@ -71,16 +71,16 @@
             </p>
             <div class="d-flex flex-column">
                 <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
-                    {% set female_asian, female_black, female_hispanic, female_other, female_white = 0,0,0,0,0 %}
+                    <!-- {% set female_asian, female_black, female_hispanic, female_other, female_white = 0,0,0,0,0 %}
                     {% set male_asian, male_black, male_hispanic, male_other, male_white = 0,0,0,0,0 %}
-                    
+                     -->
                     {% for x in templist  %}
                         <div class="temp-box d-flex flex-column w-25">
                             <div class="p-2">
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
                             <div class="p-2">
-                                {% if x.gender == 'female' and x.race == 'asian' %}
+                                <!-- {% if x.gender == 'female' and x.race == 'asian' %}
 
                                     <img src="{% static 'female/asian/{{female_asian}}.PNG' %}" class="img-thumbnail"/>
                                     {{ female_asian + 1 }} 
@@ -90,7 +90,7 @@
 
                                     <img src="{% static 'female/white/{{female_white}}.PNG' %}" class="img-thumbnail"/>
                                     {{ female_white + 1 }} 
-                                {% endif %}
+                                {% endif %} -->
                                 
                             </div>
                             <div class="box-text">
