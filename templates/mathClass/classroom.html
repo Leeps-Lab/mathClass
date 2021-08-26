@@ -71,13 +71,17 @@
             </p>
             <div class="d-flex flex-column">
                 <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
+
+                    female_asian = 0
+                    female_whtie = 0
+
                     {% for x in templist  %}
                         <div class="temp-box d-flex flex-column w-25">
                             <div class="p-2">
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
                             <div class="p-2">
-                                <img src="{% static 'female/asian/girl4.PNG' %}" class="img-thumbnail"/>
+                                <img src="{% static 'female/asian/girl4.PNG' %}" class="img-thumbnail {{x.race}} {{x.gender}}"/>
                             </div>
                             <div class="box-text">
                                 <ul>
@@ -97,7 +101,27 @@
                             </div>
                         </div>
                     {% endfor %}
-                    
+                    <script>
+                        var female_black = 0,
+                        female_hispanic = 0, 
+                        female_other = 0,
+                        female_white = 0,
+                        female_asian = 0,
+                        male_black = 0,
+                        male_hispanic = 0, 
+                        male_other = 0,
+                        male_white = 0,
+                        male_asian = 0;
+
+
+                        var fb = document.getElementsByClassName('female black'),
+                        fw = document.getElementsByClassName('female white');
+
+                        for (var i = 0; i < fw.length; i++) {
+                            let temp = '/static/female/white/' + i + '.PNG'
+                            document.getElementsByClassName('female white').src=temp;
+                        }
+                    </script>
                     
             </div>
 
