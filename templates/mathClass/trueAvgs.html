@@ -70,7 +70,7 @@
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
                             <div class="p-2">
-                                <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail"/>
+                                <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail {{x.race}} {{x.gender}}"/>
                             </div>
                             <div class="box-text">
                                 <ul>
@@ -85,6 +85,83 @@
                             </div>
                         </div>
                     {% endfor %}
+                    <script>
+
+                        var fb = document.getElementsByClassName('female black'),
+                        fw = document.getElementsByClassName('female white'),
+                        fh = document.getElementsByClassName('female hispanic'),
+                        fo = document.getElementsByClassName('female other'),
+                        fa = document.getElementsByClassName('female asian'),
+                        mw = document.getElementsByClassName('male white'),
+                        mb = document.getElementsByClassName('male black'),
+                        mh = document.getElementsByClassName('male hispanic'),
+                        mo = document.getElementsByClassName('male other')
+                        ma = document.getElementsByClassName('male asian');
+
+
+                        for (let i = 0; i < fw.length; i++) {
+                            let temp = '/static/female/white/' + i + '.PNG'
+                            console.log(temp)
+                            // document.getElementsByClassName('female white').src=temp;
+                            fw[i].src = temp
+                        }
+
+                        for (let i = 0; i < fb.length; i++) {
+                            let temp = '/static/female/black/' + i + '.PNG'
+                            console.log(temp)
+                            fb[i].src = temp
+                        }
+
+                        for (let i = 0; i < fh.length; i++) {
+                            let temp = '/static/female/hispanic/' + i + '.PNG'
+                            console.log(temp)
+                            fh[i].src = temp
+                        }
+
+                        for (let i = 0; i < fo.length; i++) {
+                            let temp = '/static/female/other/' + i + '.PNG'
+                            console.log(temp)
+                            fo[i].src = temp
+                        }
+
+                        for (let i = 0; i < fa.length; i++) {
+                            let temp = '/static/female/asian/' + i + '.PNG'
+                            console.log(temp)
+                            fa[i].src = temp
+                        }
+
+                        for (let i = 0; i < mw.length; i++) {
+                            let temp = '/static/male/white/' + i + '.PNG'
+                            console.log(temp)
+                            // document.getElementsByClassName('male white').src=temp;
+                            mw[i].src = temp
+                        }
+
+                        for (let i = 0; i < mb.length; i++) {
+                            let temp = '/static/male/black/' + i + '.PNG'
+                            console.log(temp)
+                            mb[i].src = temp
+                        }
+
+                        for (let i = 0; i < mh.length; i++) {
+                            let temp = '/static/male/hispanic/' + i + '.PNG'
+                            console.log(temp)
+                            mh[i].src = temp
+                        }
+
+                        for (let i = 0; i < mo.length; i++) {
+                            let temp = '/static/male/other/' + i + '.PNG'
+                            console.log(temp)
+                            mo[i].src = temp
+                        }
+
+                        for (let i = 0; i < ma.length; i++) {
+                            let temp = '/static/male/asian/' + i + '.PNG'
+                            console.log(temp)
+                            ma[i].src = temp
+                        }
+
+                    </script>
             </div>
             <p>Are there any groups for whom you want to change your average guesses?</p>
             <div class="">
