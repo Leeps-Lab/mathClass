@@ -1,9 +1,7 @@
 {% extends "global/Page.html" %}
 {% load otree %}
+{% load otree static %}
 
-{% block title %}
-    True Averages
-{% endblock %}
 
 {% block content %}
     <style>
@@ -55,15 +53,25 @@
             flex-wrap: wrap;
         }
     </style>
-
-    <div class="card bg-light m-3">
-        <div class="card-body">
-
+    <div class="container-fluid box-one card bg-light m-2 p-1">
+       
+        <div class="container m-2 p-1">
+                <!-- card bg-light m-3 w-1000 -->
+            <h3>
+                Your Students 
+            </h3>
             <p>
-                Here's how each of your students performed on the test. 
+                These students are moving from first grade to second grade, and you are required to recommend them for an accelerated elementary school mathematics track. These students have taken a standardized screening test for the accelerated track. The screening test was conducted nationally for a representative
+	sample of first-grade students. The levels of the test were consistent with first grade math, with questions designed to measure conceptual knowledge, 
+	number sense, and simple operations. Unfortunately, the results of the test are not in yet, and the deadline for submitting the recommendation is 
+	today. You are required to submit this recommendation without seeing how they performed on the screening test.
+	
+	Can you rank these students by who you believe is most likely to perform well in the accelerated track? Your payment
+	depends on how close your ranking is to the actual ranking on these students on the screening test.
             </p>
             <div class="d-flex flex-column">
-                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row --->
+                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
+
                     {% for x in templist  %}
                         <div class="temp-box d-flex flex-column w-25">
                             <div class="p-2">
@@ -82,6 +90,12 @@
                                     <li>{{ x.pet }}</li>
                                     <li> Fall Math score: {{ x.fall_score }}</li>
                                 </ul>
+                                <form class="form-inline">
+                                    <div class="form-group mx-sm-5 mb-2">
+                                      <label for="inputPassword2" class="sr-only">Rank</label>
+                                      <input class="form-control" id="{{x.id}}" placeholder="Rank">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     {% endfor %}
@@ -162,47 +176,32 @@
                         }
 
                     </script>
-            </div>
-            <p>Are there any groups for whom you want to change your average guesses? Are there 
-                any groups for whom you want to change your guesses? Remember, you are still guessing 
-                the average for all students in each group who took the test, not just for your classroom.
-                Again, your payment depends on how close your guesses are to the true averages.
-            </p>
-            <div class="">
-                <form>
-                    {% for name in fields %}
-                        <div class="form-group">
-                            <label for="inputPassword2" class="sr-only">{{ name }}</label>
-                            <input type="text" class="form-control" id="{{ name }}" placeholder="{{ name }}" required>
-                        </div>
-                    {% endfor %}
-                    {% next_button %}
-                </form>
+                    
             </div>
 
-            <input type="hidden" id="new_scores" name="new_scores">
-            {{ form.new_scores.errors }}
+            
+            <p>{% next_button %}</p>
+
+            <input type="hidden" id="ranks_spring" name="ranks_spring">
+            {{ form.ranks_spring.errors }}
 
             <script>
                 // This script runs when next button is pressed
                 window.addEventListener('submit', function() {
-                    const fieldlist = "{{ fieldlist|safe }}".split(",");
-                    var new_scores = {};
-                    for (var i = 0; i < fieldlist.length; i++) {
-                        var name = fieldlist[i];
-                        answer = document.getElementById(name).value;
-                        new_scores[name] = answer;
+                    
+                    const idlist = "{{ idlist|safe }}".split(",");
+                    var ranks_spring = {};
+                    for (var i = 0; i < idlist.length; i++) {
+                        var id = idlist[i];
+                        answer = document.getElementById(id).value;
+                        ranks_spring[id] = answer;
                     }
-                    document.getElementById('new_scores').value = JSON.stringify(new_scores);
+                    document.getElementById('ranks_spring').value = JSON.stringify(ranks_spring);
                 })
             </script>
-        
         </div>
-        
     </div>
     
-    <!-- {% include Constants.bg_template %} -->
-
+    
 {% endblock %}
-
 

@@ -88,12 +88,12 @@
                                     <li>{{ x.quality1 }}</li>
                                     <li>{{ x.quality2 }}</li>
                                     <li>{{ x.pet }}</li>
-                                </ul>                                
-                                <form class="form-inline">                                    
+                                </ul>
+                                <form class="form-inline">
                                     <div class="form-group mx-sm-5 mb-2">
                                       <label for="inputPassword2" class="sr-only">Rank</label>
-                                      <input class="form-control" id="{{ x.id }}" placeholder="Rank">
-                                    </div>                                    
+                                      <input class="form-control" id="{{x.id}}" placeholder="Rank">
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -194,7 +194,6 @@
                         var id = idlist[i];
                         answer = document.getElementById(id).value;
                         ranks[id] = answer;
-
                     }
                     document.getElementById('ranks').value = JSON.stringify(ranks);
                 })

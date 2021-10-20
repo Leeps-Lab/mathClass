@@ -37,3 +37,4 @@ class Player(BasePlayer):
     ranks = JSONField(default=dict)
     scores = JSONField(default=dict)
     new_scores = JSONField(default=dict)
+    ranks_spring = JSONField(default=dict)
