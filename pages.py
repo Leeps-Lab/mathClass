@@ -6,6 +6,7 @@ import csv
 from django.db import models
 import os
 import pathlib
+import pandas as pandasForSortingCSV
 
 print(pathlib.Path(__file__).parent.resolve())
 with open (os.path.join(pathlib.Path(__file__).parent.resolve(), 'new_25_oct.csv')) as f:
@@ -28,6 +29,12 @@ with open (os.path.join(pathlib.Path(__file__).parent.resolve(), 'new_25_oct.csv
                 'quality2': row[9],
             }
         )
+
+# with open (os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')) as f:
+#     payoff_csv = csv.reader(f)
+# os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')
+# csvData = pandasForSortingCSV.read_csv(os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv'))
+
 
 male_white_counter = 1
 
@@ -60,6 +67,40 @@ class classroom(Page):
     
 score_fields = ['Asian Students', 'Girls', 'Dog Owners', 'Students with both parents working', 'White students', 'Extroverted students', 'Boys', 'Unruly students', 'Cat owners']
 
+def helperPayoff_Avgs(scores):
+    # What should this function do?
+    # Subtract Actual score from Assigned score
+    # Loop over scores
+    # Get the score and subtract
+    total = 0
+    ActualAvg = {
+        'Asian Students' : '57',
+        'Girls' : '51.7',
+        'Dog Owners' : '50.9',
+        'Students with both parents working' : '49.1',
+        'White students':'55',
+        'Extroverted students' : '54.3',
+        'Boys' : '51.6',
+        'Unruly students' : '50.7',
+        'Cat owners' : '53.8'
+    }
+    # Asian Students 57
+    # Girls  51.7
+    # Dog owners 50.9
+    # Both parents working 49.1
+    # white students 55
+    # extroverted students 54.3
+    # boys 51.6
+    # unruly students 50.7
+    # cat owners 53.8
+    for key,value in scores.items():
+        # print(f'{key} {value}')
+        # print(ActualAvg[key])
+        temp = 0 if value == '' else int(value)
+        total += (float(ActualAvg[key]) - temp) ** 2
+    constant = 3000
+    return constant - total
+
 class studentAverages(Page):
     "This page shows student averages accross the whole group, then asks to rate"
     form_model = 'player'
@@ -73,6 +114,7 @@ class studentAverages(Page):
         }
     def before_next_page(self):
         print(self.player.scores)
+        helperPayoff_Avgs(self.player.scores)
 
 class trueAvgs(Page):
     "This page shows true values of flashcard ranks and then asks to fill"
@@ -91,6 +133,33 @@ class trueAvgs(Page):
     def before_next_page(self):
         print(self.player.new_scores)
         # print(self.player.ranks_spring)
+        # print(type(self.player.ranks_spring))
+        helperPayoff_Avgs(self.player.new_scores)
+    
+# Gets a dictionary
+def helperPayoff(ranks):
+    # What should this function do?
+    # Subtract Actual Rank from Assigned rank
+    # Loop over ranks
+    # Use child_name or ALPHABET to index into csv with ranks
+    # Get the rank and subtract
+    total = 0
+    for key,value in ranks.items():
+        # print(f'{key} {value}')
+        with open (os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')) as f:
+            csvData = csv.reader(f)
+            for col in csvData:
+                if key == col[0]:
+                    # print(f'Child: {key}, Actual Rank: {col[3]}, Rank: {value}')
+                    temp = 0 if value == '' else int(value)
+                    total += (int(col[3]) - temp) ** 2
+                    break
+    constant = 3000
+    return constant - total
+
+
+
+
 
 class fallScores(Page):
     form_model = 'player'
@@ -104,6 +173,11 @@ class fallScores(Page):
         }
     def before_next_page(self):
         print(self.player.ranks_spring)
+        helperPayoff(self.player.ranks_spring)
+        # print(type(self.player.ranks_spring))
+        # participant.payoff = 
+    
+
 
 page_sequence = [
     background, 

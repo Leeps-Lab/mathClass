@@ -1,0 +1,26 @@
+child_name,sex,race,Rank,Fall,Spring,pet,parent1_employment,parent2_employment,social_interaction,self_control
+V,male,white,1,74,75,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+N,female,white,2,71,72,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+B,female,hispanic,3,65,64,Owns a cat,Parent 1: not looking for work,Parent 2: works full time,very extroverted,very disciplined
+M,male,other,4,64,64,Owns a cat,Parent 1: works full time,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+I,male,white,5,61,49,Owns a cat,Parent 1: works full time,Parent 2: works full time,very extroverted,very disciplined
+R,male,hispanic,6,60,71,Owns a dog,Parent 1: works part time,Parent 2: works full time,very extroverted,very disciplined
+L,female,hispanic,7,60,63,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+E,male,white,8,57,71,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
+P,male,hispanic,9,57,70,Owns a dog,Parent 1: works full time,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+G,male,white,10,56,54,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+W,female,white,11,54,50,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
+A,male,white,12,53,58,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
+C,male,white,13,51,70,Owns a dog,Parent 1: not looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+Q,female,white,14,51,67,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+U,male,white,15,51,55,No pets,Parent 1: not looking for work,Parent 2: works full time,very extroverted,very disciplined
+F,male,hispanic,16,51,52,Owns a dog,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+O,female,white,17,50,55,Owns a fish,Parent 1: works full time,Parent 2: works full time,very introverted,very unruly
+K,male,hispanic,18,50,51,Owns a dog,Parent 1: not looking for work,Parent 2: works part time,somewhat extroverted,somewhat disciplined
+S,female,hispanic,19,49,60,No pets,Parent 1: not looking for work,Parent 2: works full time,very extroverted,very disciplined
+D,female,black,20,47,44,Owns a dog,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+Y,female,white,21,47,43,No pets,Parent 1: works part time,Parent 2: works full time,very extroverted,very disciplined
+J,female,white,22,46,41,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
+T,male,hispanic,23,41,40,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
+H,female,white,24,39,51,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
+X,female,hispanic,25,38,27,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
