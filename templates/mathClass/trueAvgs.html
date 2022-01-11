@@ -2,7 +2,7 @@
 {% load otree %}
 
 {% block title %}
-    True Averages
+    Averages Scores
 {% endblock %}
 
 {% block content %}
@@ -60,7 +60,7 @@
         <div class="card-body">
 
             <p>
-                Here's how each of your students performed on the test. 
+                Given your students’ performance, are there any groups for whom you want to change your guesses? Remember, you are still guessing the average for all students in each group who took the test, not just for your classroom. Again, your payment depends on how close your guesses are to the true averages.
             </p>
             <div class="d-flex flex-column">
                 <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row --->
@@ -163,11 +163,6 @@
 
                     </script>
             </div>
-            <p>Are there any groups for whom you want to change your average guesses? Are there 
-                any groups for whom you want to change your guesses? Remember, you are still guessing 
-                the average for all students in each group who took the test, not just for your classroom.
-                Again, your payment depends on how close your guesses are to the true averages.
-            </p>
             <div class="">
                 <form>
                     {% for name in fields %}

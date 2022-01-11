@@ -52,6 +52,10 @@
         .first-row {
             flex-wrap: wrap;
         }
+        .img-box { 
+            width: 50vh;
+            height: 50vh;
+        }
     </style>
     <div class="container-fluid box-one card bg-light m-2 p-1">
        
@@ -61,40 +65,97 @@
                 Your Students 
             </h3>
             <p>
-                These students are moving from first grade to second grade, and you are required to recommend them for an accelerated elementary school mathematics track. These students have taken a standardized screening test for the accelerated track. The screening test was conducted nationally for a representative
-	sample of first-grade students. The levels of the test were consistent with first grade math, with questions designed to measure conceptual knowledge, 
-	number sense, and simple operations. Unfortunately, the results of the test are not in yet, and the deadline for submitting the recommendation is 
-	today. You are required to submit this recommendation without seeing how they performed on the screening test.
-	
-	Can you rank these students by who you believe is most likely to perform well in the accelerated track? Your payment
-	depends on how close your ranking is to the actual ranking on these students on the screening test.
+                Let’s move on to the first task. The flashcards below depict profiles of students in your classroom. These students have recently entered first grade, and you are required to recommend them for an accelerated elementary school mathematics track. Your recommendation is based on your prediction of their relative performance on a standardized end-of-year screening test, designed to test conceptual knowledge, number sense, and simple operations. Can you rank these students by who you believe is most likely to perform well in the accelerated track? Your payment depends on how close your ranking is to the actual ranking on these students on the screening test.
             </p>
+            <script>
+                function gfg_check_duplicates(e) {
+                    const alphabet = ["A","B","C","D","E","F","G","H","I","J",
+                    "K","L","M","N","O","P","Q","R","S","T","U","V","W","X",
+                    "Y","Z"];
+                    var myarray = [];
+                    for (i = 0; i < 25; i++) { 
+                        myarray[i] =
+                         document.getElementById(alphabet[i]).value;
+                     }
+                    const hasDuplicatedItems = function (myarray) {
+                        const obj = {};
+                        const numItems = inputArray.length;
+                        const duplicateRemoved = [];
+
+                        for (const i in inputArray) {
+                            obj[inputArray[i]] = 0;
+                        }
+
+                        for (const i in obj) {
+                            duplicateRemoved.push(obj[i]);
+                        }
+
+                        return duplicateRemoved.length === numItems;
+                    };
+                    // if (hasDuplicatedItems) {
+                    //     // e.preventDefault();
+                    //     // alert('Duplicate Ranks!')
+                    //     return <div>hi</div>
+                    // }
+                    // console.log(ranks);
+                    // console.log(myarray);
+                    }
+                    
+                //  var myarray = [];
+                //  for (i = 0; i < 4; i++) {
+                //   document.getElementById("status" + i).innerHTML = "";
+                //   myarray[i] =
+                //   document.getElementById("gfg_field" + i).value;
+                //      }
+                //  for (i = 0; i < 4; i++) {
+                //   var flag = false;
+                //     for (j = 0; j < 4; j++) {
+                //       if (i == j || myarray[i] == "" || myarray[j] == "") 
+                //          continue;
+                //       if (myarray[i] == myarray[j]) {
+                //          flag = true;
+                //        document.getElementById("status" + i).innerHTML += 
+                //          "<br>Its identical to the phone number " + (j + 1);
+                //                     }
+                //                 }
+                //       if (flag == false) 
+                //         document.getElementById("status" + i).innerHTML = "";
+                //             }
+                //         }
+            </script>
             <div class="d-flex flex-column">
-                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
+                <div class = "first-row d-flex justify-content-around"> <!--- first row -->
 
                     {% for x in templist  %}
                         <div class="temp-box d-flex flex-column w-25">
                             <div class="p-2">
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
-                            <div class="p-2">
+                            <div class="mx-auto d-block">
                                 <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail {{x.race}} {{x.gender}}"/>
                             </div>
-                            <div class="box-text">
-                                <ul>
+                            <div class="">
+                                <ul class = "">
                                     <!-- <li>{{ x.id }}</li> -->
                                     <li>{{ x.parent1 }}</li>
                                     <li>{{ x.parent2 }}</li>
                                     <li>{{ x.quality1 }}</li>
                                     <li>{{ x.quality2 }}</li>
                                     <li>{{ x.pet }}</li>
+                                    <li>
+                                        <form class="form-inline">
+                                            <!-- <div class="form-group mx-sm-5 mb-2">
+                                              <label for="inputPassword2" class="sr-only">Rank</label>
+                                              <input class="form-control" id="{{x.id}}" placeholder="Rank">
+                                            </div> -->
+                                            
+                                              <label for="inputPassword2" class="sr-only">Rank</label>
+                                              <input class="form-control" id="{{x.id}}" placeholder="Rank" min='1' max='25' type="number" oninput="gfg_check_duplicates()">
+                                            
+                                        </form>
+                                    </li>
                                 </ul>
-                                <form class="form-inline">
-                                    <div class="form-group mx-sm-5 mb-2">
-                                      <label for="inputPassword2" class="sr-only">Rank</label>
-                                      <input class="form-control" id="{{x.id}}" placeholder="Rank">
-                                    </div>
-                                </form>
+                                
                             </div>
                         </div>
                     {% endfor %}
@@ -114,63 +175,63 @@
 
                         for (let i = 0; i < fw.length; i++) {
                             let temp = '/static/female/white/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             // document.getElementsByClassName('female white').src=temp;
                             fw[i].src = temp
                         }
 
                         for (let i = 0; i < fb.length; i++) {
                             let temp = '/static/female/black/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             fb[i].src = temp
                         }
 
                         for (let i = 0; i < fh.length; i++) {
                             let temp = '/static/female/hispanic/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             fh[i].src = temp
                         }
 
                         for (let i = 0; i < fo.length; i++) {
                             let temp = '/static/female/other/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             fo[i].src = temp
                         }
 
                         for (let i = 0; i < fa.length; i++) {
                             let temp = '/static/female/asian/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             fa[i].src = temp
                         }
 
                         for (let i = 0; i < mw.length; i++) {
                             let temp = '/static/male/white/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             // document.getElementsByClassName('male white').src=temp;
                             mw[i].src = temp
                         }
 
                         for (let i = 0; i < mb.length; i++) {
                             let temp = '/static/male/black/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             mb[i].src = temp
                         }
 
                         for (let i = 0; i < mh.length; i++) {
                             let temp = '/static/male/hispanic/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             mh[i].src = temp
                         }
 
                         for (let i = 0; i < mo.length; i++) {
                             let temp = '/static/male/other/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             mo[i].src = temp
                         }
 
                         for (let i = 0; i < ma.length; i++) {
                             let temp = '/static/male/asian/' + i + '.PNG'
-                            console.log(temp)
+                            // console.log(temp)
                             ma[i].src = temp
                         }
 
@@ -186,8 +247,35 @@
 
             <script>
                 // This script runs when next button is pressed
-                window.addEventListener('submit', function() {
-                    
+                // window.addEventListener(onchange, function() {
+                //     const idlist = "{{ idlist|safe }}".split(",");
+                //     var ranks = {};
+                //     for (var i = 0; i < idlist.length; i++) {
+                //         var id = idlist[i];
+                //         answer = document.getElementById(id).value;
+                //         ranks[id] = answer;
+                //     }
+                //     const hasDuplicatedItems = function (ranks) {
+                //         const obj = {};
+                //         const numItems = inputArray.length;
+                //         const duplicateRemoved = [];
+
+                //         for (const i in inputArray) {
+                //             obj[inputArray[i]] = 0;
+                //         }
+
+                //         for (const i in obj) {
+                //             duplicateRemoved.push(obj[i]);
+                //         }
+
+                //         return duplicateRemoved.length === numItems;
+                //     };
+                //     if (hasDuplicatedItems) {
+                //         alert('Duplicate Ranks!')
+                //     }
+                // })
+                window.addEventListener('submit', function(e) {
+                    // e.preventDefault()
                     const idlist = "{{ idlist|safe }}".split(",");
                     var ranks = {};
                     for (var i = 0; i < idlist.length; i++) {
@@ -195,8 +283,46 @@
                         answer = document.getElementById(id).value;
                         ranks[id] = answer;
                     }
+                    const hasDuplicatedItems = function (ranks) {
+                        const obj = {};
+                        const numItems = inputArray.length;
+                        const duplicateRemoved = [];
+
+                        for (const i in inputArray) {
+                            obj[inputArray[i]] = 0;
+                        }
+
+                        for (const i in obj) {
+                            duplicateRemoved.push(obj[i]);
+                        }
+
+                        return duplicateRemoved.length === numItems;
+                    };
+                    // if (hasDuplicatedItems) {
+                    //     alert('Duplicate Ranks!')
+                    // }
+                    // console.log(ranks);
                     document.getElementById('ranks').value = JSON.stringify(ranks);
+                    
+                    
                 })
+                // var frm = document.querySelector('ranks');
+                // var inputs = frm.querySelectorAll('input[type=text]');
+
+                // frm.addEventListener('submit', function(e) {
+                //     e.preventDefault();
+                //     var classArr = [];
+
+                //     for(var i = 0; i < inputs.length; i++) {
+                //         if(classArr.indexOf(inputs[i].value) != -1) {
+                //             inputs[i].style.backgroundColor = "red";
+                //             return false;
+                //         }
+                //         else
+                //             classArr.push(inputs[i].value);
+                //     }
+                //     frm.submit();
+                // });
             </script>
         </div>
     </div>

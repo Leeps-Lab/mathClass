@@ -7,6 +7,8 @@ from django.db import models
 import os
 import pathlib
 import pandas as pandasForSortingCSV
+import random
+from random import randrange
 
 print(pathlib.Path(__file__).parent.resolve())
 with open (os.path.join(pathlib.Path(__file__).parent.resolve(), 'new_25_oct.csv')) as f:
@@ -38,12 +40,101 @@ with open (os.path.join(pathlib.Path(__file__).parent.resolve(), 'new_25_oct.csv
 
 male_white_counter = 1
 
+
+# Gets a dictionary
+def helperPayoff(ranks):
+    # What should this function do?
+    # Subtract Actual Rank from Assigned rank
+    # Loop over ranks
+    # Use child_name or ALPHABET to index into csv with ranks
+    # Get the rank and subtract
+    total = 0
+    # random_select = randrange(24)
+    choices = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    random_child = random.choice(choices)
+    random_child_score = ranks[random_child]
+    # print(random_child)
+    # print(random_child_score)
+    with open (os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')) as f:
+        csvData = csv.reader(f)
+        for col in csvData:
+            if col[0] == random_child:
+                temp = 0 if random_child_score == '' else int(random_child_score)
+                # print(int(col[3]) - temp)
+                # print('hi')
+                return abs(int(col[3]) - temp)
+    # for key,value in ranks.items():
+    #     # print(f'{key} {value}')
+    #     with open (os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')) as f:
+    #         csvData = csv.reader(f)
+    #         for col in csvData:
+    #             if key == col[0]:
+    #                 # print(f'Child: {key}, Actual Rank: {col[3]}, Rank: {value}')
+    #                 temp = 0 if value == '' else int(value)
+    #                 total += (int(col[3]) - temp) ** 2
+    #                 break
+    # constant = 3000
+    # return constant - total
+
+score_fields = ['Hispanic Students', 'Girls', 'Dog Owners', 'Students with both parents working', 'White students', 'Extroverted students', 'Boys', 'Unruly students', 'Cat owners']
+
+def helperPayoff_Avgs(scores):
+    # What should this function do?
+    # Subtract Actual score from Assigned score
+    # Loop over scores
+    # Get the score and subtract
+    total = 0
+    ActualAvg = {
+        'Hispanic Students' : '48.3',
+        'Girls' : '51.7',
+        'Dog Owners' : '50.9',
+        'Students with both parents working' : '49.1',
+        'White students':'55',
+        'Extroverted students' : '54.3',
+        'Boys' : '51.6',
+        'Unruly students' : '50.7',
+        'Cat owners' : '53.8'
+    }
+    # Hispanic Students 57
+    # Girls  51.7
+    # Dog owners 50.9
+    # Both parents working 49.1
+    # white students 55
+    # extroverted students 54.3
+    # boys 51.6
+    # unruly students 50.7
+    # cat owners 53.8
+    #
+    # random_child = random.choice(choices)
+    # random_child_score = ranks[random_child]
+    random_select = randrange(8)
+    print(score_fields[random_select])
+    print(ActualAvg[score_fields[random_select]])
+    # templist = list(scores.values())[random_select]
+    # print(templist)
+    # print(float(ActualAvg[score_fields[random_select]]) - list(scores.values())[random_select])
+    print(float(ActualAvg[score_fields[random_select]]) - float(list(scores.values())[random_select]))
+    return abs(float(ActualAvg[score_fields[random_select]]) - float(list(scores.values())[random_select]))
+    #
+    for key,value in scores.items():
+        # print(f'{key} {value}')
+        # print(ActualAvg[key])
+        temp = 0 if value == '' else int(value)
+        total += (float(ActualAvg[key]) - temp) ** 2
+    constant = 3000
+    return constant - total
+
+
 class background(Page):
     "This page introduces the experiment"
     pass
 
 class introClass(Page):
     "screen 2"
+    pass
+
+class introIAT(Page):
+    "intro to iat"
     pass
 
 
@@ -64,42 +155,8 @@ class classroom(Page):
     
     def before_next_page(self):
         print(self.player.ranks)
+        helperPayoff(self.player.ranks)
     
-score_fields = ['Asian Students', 'Girls', 'Dog Owners', 'Students with both parents working', 'White students', 'Extroverted students', 'Boys', 'Unruly students', 'Cat owners']
-
-def helperPayoff_Avgs(scores):
-    # What should this function do?
-    # Subtract Actual score from Assigned score
-    # Loop over scores
-    # Get the score and subtract
-    total = 0
-    ActualAvg = {
-        'Asian Students' : '57',
-        'Girls' : '51.7',
-        'Dog Owners' : '50.9',
-        'Students with both parents working' : '49.1',
-        'White students':'55',
-        'Extroverted students' : '54.3',
-        'Boys' : '51.6',
-        'Unruly students' : '50.7',
-        'Cat owners' : '53.8'
-    }
-    # Asian Students 57
-    # Girls  51.7
-    # Dog owners 50.9
-    # Both parents working 49.1
-    # white students 55
-    # extroverted students 54.3
-    # boys 51.6
-    # unruly students 50.7
-    # cat owners 53.8
-    for key,value in scores.items():
-        # print(f'{key} {value}')
-        # print(ActualAvg[key])
-        temp = 0 if value == '' else int(value)
-        total += (float(ActualAvg[key]) - temp) ** 2
-    constant = 3000
-    return constant - total
 
 class studentAverages(Page):
     "This page shows student averages accross the whole group, then asks to rate"
@@ -136,27 +193,6 @@ class trueAvgs(Page):
         # print(type(self.player.ranks_spring))
         helperPayoff_Avgs(self.player.new_scores)
     
-# Gets a dictionary
-def helperPayoff(ranks):
-    # What should this function do?
-    # Subtract Actual Rank from Assigned rank
-    # Loop over ranks
-    # Use child_name or ALPHABET to index into csv with ranks
-    # Get the rank and subtract
-    total = 0
-    for key,value in ranks.items():
-        # print(f'{key} {value}')
-        with open (os.path.join(pathlib.Path(__file__).parent.resolve(), '25_oct_payoff.csv')) as f:
-            csvData = csv.reader(f)
-            for col in csvData:
-                if key == col[0]:
-                    # print(f'Child: {key}, Actual Rank: {col[3]}, Rank: {value}')
-                    temp = 0 if value == '' else int(value)
-                    total += (int(col[3]) - temp) ** 2
-                    break
-    constant = 3000
-    return constant - total
-
 
 
 
@@ -186,4 +222,5 @@ page_sequence = [
     studentAverages, # will have avg values and fill in the blanks
     fallScores,
     trueAvgs, # will show Flashcards with values and then fill blanks again
+    introIAT,
 ]

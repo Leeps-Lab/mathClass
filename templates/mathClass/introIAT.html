@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% load otree static %}
+
+
+{% block title %}
+Timed Test:
+{% endblock %}
+
+{% block content %}
+<div class="card bg-light m-2 p-1">
+    <div class="card-body">
+    <p>
+        Now, you will move to the second section of the experiment, where you are required to take a timed test. 
+        Your payment depends on how quickly you complete the test.
+    </p>
+    <p>{% next_button %}</p>
+    </div>  
+</div>
+
+{% endblock %}

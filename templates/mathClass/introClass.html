@@ -12,13 +12,14 @@
     <div class="card-body">
     <p>
         For this experiment, we randomly sampled 25 students from the ECLS, and generated classroom profiles for them based on information about them from the data. The profiles reflect the type of information a class teacher would typically have about their students. These classroom profiles are computer-generated representations of the students based on their information from the data.
-    </p>
-    <br>
-    <p>
-        You have been recruited to act as a second-grade teacher in this experiment. You will be assigned to a "classroom," which is the random sample described above. These 25 students have recently completed first grade. 
-        You will see your "classroom" on the next screen, 
-        which shows you a computer-generated representation of your students.
-        You are required to recommend some students for an accelerated elementary school math track. 
+        <br><br>You have been recruited to act as a first-grade teacher in this experiment. You will be assigned to a "classroom," which is the random sample described above. These 25 students have recently entered elementary school. You will see your "classroom" on the next screen, which shows you a computer-generated representation of your students. You are required to recommend some students for an accelerated elementary school math track, by ranking the students on the basis of your predictions about their performance in an end-of-term math test. You are required to assign these ranks twice, once at the beginning of the year and once after a mid-term assessment.
+        <br><br>Your payment will be based on how close your ranking is to the student’s true ranking on the basis of the end-of-term test. Specifically, for each ranking task, we will choose one student at random, and compute the difference between the true rank (R ) and the rank you assign to them (r ). As a secondary task, we require you to guess the group averages of test scores on the mid-term assessment- once without knowing the scores of the 25 students in your classroom, and once after they have been released. For each average prediction task, we will choose one group at random, and compute the difference between the true average (A ) and the average predicted by you (a ).
+        Finally, you will take a time-bound test yourself. We will record the total time you take on the test (t ).
+        <br><br>
+        Your total payoff will be computed as follows:
+        <br>
+        <img src="{% static 'mathClass_equation.png' %}" class="img-fluid" alt="Responsive image">
+        
     </p>
     <p>{% next_button %}</p>
     </div>  
