@@ -52,10 +52,14 @@
         .first-row {
             flex-wrap: wrap;
         }
+        .img-box { 
+            width: 150px;
+            height: 150px;
+        }
     </style>
-    <div class="container-fluid box-one card bg-light m-2 p-1">
+    <div class="container">
        
-        <div class="container m-2 p-1">
+        <div class="row">
                 <!-- card bg-light m-3 w-1000 -->
             <h3>
                 Ranking Your Students
@@ -63,33 +67,35 @@
             <p>
                 Here's how each of your students performed on the mid-term assessment. Given this performance, please indicate your best guess of each student’s rank on the end-of-year assessment. Again, your payment depends on how close your ranking is to the true ranking.
             </p>
+        </div>
+        <div class="row">
             <div class="d-flex flex-column">
-                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row -->
+                <div class = "first-row d-flex"> <!--- first row -->
 
                     {% for x in templist  %}
-                        <div class="temp-box d-flex flex-column w-25">
+                        <div class="card" style="width: 13rem;">
                             <div class="p-2">
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
-                            <div class="p-2">
-                                <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail {{x.race}} {{x.gender}}"/>
+                            <div class="mx-auto d-block ">
+                                <img src="{% static 'stickman.jpeg' %}" class=" img-box {{x.race}} {{x.gender}}"/>
                             </div>
-                            <div class="box-text">
-                                <ul>
-                                    <!-- <li>{{ x.id }}</li> -->
-                                    <li>{{ x.parent1 }}</li>
-                                    <li>{{ x.parent2 }}</li>
-                                    <li>{{ x.quality1 }}</li>
-                                    <li>{{ x.quality2 }}</li>
-                                    <li>{{ x.pet }}</li>
-                                    <li> Fall Math score: {{ x.fall_score }}</li>
+                            <div class="">
+                                <ul class="list-group list-group-flush " style="font-size:12px">
+                                    <li class="list-group-item">{{ x.parent1 }}</li>
+                                    <li class="list-group-item">{{ x.parent2 }}</li>
+                                    <li class="list-group-item">{{ x.quality1 }}</li>
+                                    <li class="list-group-item">{{ x.quality2 }}</li>
+                                    <li class="list-group-item">{{ x.pet }}</li>
+                                    <li class="list-group-item"> Fall Math score: {{ x.fall_score }}</li>
+                                    <li class="list-group-item">
+                                        <form class="">
+                                            <label for="inputPassword2" class="sr-only">Rank</label>
+                                            <input class="form-control" id="{{x.id}}" placeholder="Rank" min='1' max='25' type="number">
+                                      </form>
+                                    </li>
                                 </ul>
-                                <form class="form-inline">
-                                    <div class="form-group mx-sm-5 mb-2">
-                                      <label for="inputPassword2" class="sr-only">Rank</label>
-                                      <input class="form-control" id="{{x.id}}" placeholder="Rank">
-                                    </div>
-                                </form>
+                                
                             </div>
                         </div>
                     {% endfor %}

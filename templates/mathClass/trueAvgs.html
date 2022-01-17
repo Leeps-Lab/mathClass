@@ -54,37 +54,42 @@
         .first-row {
             flex-wrap: wrap;
         }
+        .img-box { 
+            width: 150px;
+            height: 150px;
+        }
     </style>
 
-    <div class="card bg-light m-3">
-        <div class="card-body">
-
+    <div class="container">
+        <div class="row">
             <p>
                 Given your students’ performance, are there any groups for whom you want to change your guesses? Remember, you are still guessing the average for all students in each group who took the test, not just for your classroom. Again, your payment depends on how close your guesses are to the true averages.
             </p>
+        </div>
+        <div class="row">
             <div class="d-flex flex-column">
-                <div class = "first-row d-flex d-flex justify-content-around"> <!--- first row --->
+                <div class = "first-row d-flex"> <!--- first row --->
                     {% for x in templist  %}
-                        <div class="temp-box d-flex flex-column w-25">
+                        <div class="card" style="width: 13rem;">
                             <div class="p-2">
                                 <p class="text-center">{{ x.id }}</p>
                             </div>
-                            <div class="p-2">
-                                <img src="{% static 'stickman.jpeg' %}" class="img-thumbnail {{x.race}} {{x.gender}}"/>
+                            <div class="mx-auto d-block ">
+                                <img src="{% static 'stickman.jpeg' %}" class=" img-box {{x.race}} {{x.gender}}"/>
                             </div>
-                            <div class="box-text">
-                                <ul>
-                                    <!-- <li>{{ x.id }}</li> -->
-                                    <li>{{ x.parent1 }}</li>
-                                    <li>{{ x.parent2 }}</li>
-                                    <li>{{ x.quality1 }}</li>
-                                    <li>{{ x.quality2 }}</li>
-                                    <li>{{ x.pet }}</li>
-                                    <li> Fall Math score: {{ x.fall_score }}</li>
+                            <div class="">
+                                <ul class="list-group list-group-flush " style="font-size:12px">
+                                    <li class="list-group-item">{{ x.parent1 }}</li>
+                                    <li class="list-group-item">{{ x.parent2 }}</li>
+                                    <li class="list-group-item">{{ x.quality1 }}</li>
+                                    <li class="list-group-item">{{ x.quality2 }}</li>
+                                    <li class="list-group-item">{{ x.pet }}</li>
+                                    <li class="list-group-item"> Fall Math score: {{ x.fall_score }}</li>
                                 </ul>
                             </div>
                         </div>
                     {% endfor %}
+                    
                     <script>
 
                         var fb = document.getElementsByClassName('female black'),
@@ -163,6 +168,7 @@
 
                     </script>
             </div>
+            <br>
             <div class="">
                 <form>
                     {% for name in fields %}
