@@ -9,7 +9,7 @@ L,female,hispanic,7,60,63,No pets,Parent 1: works full time,Parent 2: works full
 E,male,white,8,57,71,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
 P,male,hispanic,9,57,70,Owns a dog,Parent 1: works full time,Parent 2: works full time,somewhat extroverted,somewhat disciplined
 G,male,white,10,56,54,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
-W,female,white,11,54,50,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
+W,female,white,11,54,50,Owns a dog,Parent 1: looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
 A,male,white,12,53,58,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
 C,male,white,13,51,70,Owns a dog,Parent 1: not looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
 Q,female,white,14,51,67,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
@@ -23,4 +23,4 @@ Y,female,white,21,47,43,No pets,Parent 1: works part time,Parent 2: works full t
 J,female,white,22,46,41,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
 T,male,hispanic,23,41,40,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
 H,female,white,24,39,51,No pets,Parent 1: works part time,Parent 2: works full time,somewhat introverted,somewhat unruly
-X,female,hispanic,25,38,27,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+X,female,hispanic,25,38,27,Owns a dog,Parent 1: looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined

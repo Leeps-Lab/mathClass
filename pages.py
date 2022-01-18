@@ -217,7 +217,7 @@ class fallScores(Page):
 
 page_sequence = [
     background, 
-    introClass,
+    # introClass,
     classroom, # will have flashcards 
     studentAverages, # will have avg values and fill in the blanks
     fallScores,

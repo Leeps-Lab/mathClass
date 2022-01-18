@@ -20,6 +20,6 @@ S,female,hispanic,49,60,No pets,Parent 1: not looking for work,Parent 2: works f
 T,male,hispanic,41,40,No pets,Parent 1: not looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
 U,male,white,51,55,No pets,Parent 1: not looking for work,Parent 2: works full time,very extroverted,very disciplined
 V,male,white,74,75,No pets,Parent 1: works full time,Parent 2: works full time,somewhat introverted,somewhat unruly
-W,female,white,54,50,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
-X,female,hispanic,38,27,Owns a dog,Parent 1: unemployed. looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
+W,female,white,54,50,Owns a dog,Parent 1: looking for work,Parent 2: works full time,somewhat introverted,somewhat unruly
+X,female,hispanic,38,27,Owns a dog,Parent 1: looking for work,Parent 2: works full time,somewhat extroverted,somewhat disciplined
 Y,female,white,47,43,No pets,Parent 1: works part time,Parent 2: works full time,very extroverted,very disciplined
